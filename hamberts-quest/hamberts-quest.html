@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style>
+    body {
+      margin: 0;
+      padding: none;
+      background-color: black;
+    }
+
+    canvas {
+      margin: 0;
+      border: 5px solid white;
+    }
+
+    #container {
+      margin-top: 100px;
+      width: 100%;
+      text-align: center;
+    }
+
+    #description {
+      width: 100%;
+    }
+
+    #description-inner {
+      width: 800px;
+      margin: auto;
+      color: white;  
+      font-family: monospace;
+      font-size: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+  </div>
+  <div id="description">
+    <div id="description-inner">
+      <p>You are HAMBERT, a dashing rodent who covets pecans and abhors the gaze of man.</p>
+      <p>Use the 'A' and 'D' keys to traverse the cyber abyss. Avoid the green panels and collect your beloved nuts.</p>
+      <p>Use the 'W' key increase your speed, but we warned! The walls are arbitrary and your eyesight is terrible.</p>
+      <p>Beware the EYE that orbits overhead. It will open at its zenith and sear the heavens with its gaze. Do not be
+        seen.</p>
+    </div>
+  </div>
+  <script type='text/javascript'>
+    var Module = {
+      preRun: [],
+      postRun: [],
+      canvas: (() => {
+        var canvas = document.getElementById('canvas');
+        canvas.addEventListener("webglcontextlost", (e) => { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+        return canvas;
+      })()
+    };
+  </script>
+  <script async type="text/javascript" src="Game.js"></script>
+</body>
+
+</html>
