@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+        body {
+            margin: 0;
+            padding: none;
+            background-color: black;
+        }
+
+        canvas {
+            margin: 0;
+            border: 5px solid white;
+        }
+
+        #container {
+            margin-top: 100px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #description {
+            width: 100%;
+        }
+
+        #description-inner {
+            width: 800px;
+            margin: auto;
+            color: white;
+            font-family: monospace;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    </div>
+    <script type='text/javascript'>
+        var Module = {
+            preRun: [],
+            postRun: [],
+            canvas: (() => {
+                var canvas = document.getElementById('canvas');
+                canvas.addEventListener("webglcontextlost", (e) => { alert('WebGL context lost. You will need to reload the page.'); e.preventDefault(); }, false);
+                return canvas;
+            })()
+        };
+    </script>
+    <script async type="text/javascript" src="wasm_game.js"></script>
+
+    <div id="description">
+        <div id="description-inner">
+            <p>Controls:</p>
+            <ul>
+                <li>WASD - Directional Input</li>
+                <li>Enter - Confirm</li>
+                <li>Backspace/Delete - Cancel</li>
+                <li>Tab - Info</li>
+                <li>1/2 - Numeric inputs.</li>
+            </ul>
+            <p>Readme</p>
+            <p>
+                This is demo of an RPG I'm making. So far it consist of a single battle.
+            </p>
+
+            <p>
+                The framework is a standard row-based JRPG battle system with a couple of twists.
+            </p>
+            <ul>
+                <li>
+                    The front and back row act as range bands. Every action has a range which determines which row it
+                    can be used from and which rows it can target.
+                </li>
+                <br>
+                <li>
+                    All special actions are attached to limited-use items. A character's magic level determines which
+                    special actions it can use from each item.
+                </li>
+            </ul>
+            <p>
+                You control a Magician and a Galoot, and you are fighting 3 Scamps. The Magician has high magic, so he
+                can use all item actions. The Galoot has low magic so he can only use some item actions. The Galoot is
+                armored, so all damage against him is reduced by 1.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
